@@ -41,18 +41,21 @@ int main(int argc, char* argv[]) {
 
     // the main loop
     while (!isHalted) {
+        printf("\033[2J \033[H");   // erase screen and than go to the home position
+
+        for (i = 0; i < 16; i+=4) {
+            printf(" Ram[%d] = %hhd, %hhd, %hhd, %hhd ", i, ram[i], ram[i+1], ram[i+2], ram[i+3]);
+            printf("\n");
+        }
+
+        printf("\nPC = %hhd LINK = %hhd CF = %hhd SR = %hhd DR = %hhd\n", pc, linkReg, carryFlag, sourceReg, destReg);
+
         if (executeInstruction(program[pc], ram, &pc, &linkReg, &sourceReg, &destReg, &carryFlag, &isHalted) != 0) {
             printf("invalid instruction at address %hhd\n", pc);
             return -1;
         }
 
-        // printf("\nPC = %hhd CF = %hhd SR = %hhd DR = %hhd ISHALTED = %hhd\n", pc, carryFlag, sourceReg, destReg, isHalted);
-
-        // for (i = 0; i < 16; i++) {
-        //     printf(" Ram[%d] = %hhd ", i, ram[i]);
-        // }
-
-        // sleep(1);
+        usleep(500*1000);
     }
 
 
