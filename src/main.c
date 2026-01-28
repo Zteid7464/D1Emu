@@ -55,7 +55,7 @@ int main(int argc, char* argv[]) {
             return -1;
         }
 
-        usleep(500*1000);
+        sleep(1);
     }
 
 

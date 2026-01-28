@@ -45,6 +45,7 @@ int executeInstruction(Instruction inst, uint8_t* ram, uint8_t* pc, uint8_t* lin
 
         case 0x50:  //  ldi
             *destReg = inst.data;
+            printf("INSTRUCTION DATA %d\n", inst.data);
             break;
         
         case 0x60:  // mdr (move destReg ram)
@@ -60,7 +61,7 @@ int executeInstruction(Instruction inst, uint8_t* ram, uint8_t* pc, uint8_t* lin
             break;
 
         case 0xC0:  // call
-            *linkReg = *pc + 1;
+            *linkReg = *pc; // pc is allready plus 1 so dont add even more
             *pc = inst.data;
             break;
         
@@ -109,7 +110,7 @@ int executeInstruction(Instruction inst, uint8_t* ram, uint8_t* pc, uint8_t* lin
             break;
 
         case 0x09:  // out
-            printf("OUTPUT: %hhd\n", *sourceReg);
+            printf("OUTPUT: %hhd\n", *destReg);
             break;
         
         case 0x0A:  // bell
