@@ -28,8 +28,8 @@ int executeInstruction(Instruction inst, uint8_t* ram, uint8_t* pc, uint8_t* lin
             break;
 
         case 0x20:  // sub
-            *destReg = *sourceReg + ((~ram[inst.data])+1);  // subtraction
-            *carryFlag = (*destReg >> 4) & 1;   // set the carry flag if the result is bigger than 15
+            *destReg = *sourceReg + (((~ram[inst.data])+1) & 0x0f);  // subtraction. And with f because its only 4 bit
+            *carryFlag = (*destReg >> 4);   // set the carry flag if the result is bigger than 15
             *destReg &= 0x0f;   // make sure the result is not bigger than 15
             break;
 
