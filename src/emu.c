@@ -105,6 +105,7 @@ int executeInstruction(Instruction inst, uint8_t* ram, uint8_t* pc, uint8_t* lin
             break;
         
         case 0x08:  // in
+            printf("Input: ");
             scanf("%hhd", destReg);
             *destReg &= 0x0f;
             break;
@@ -114,7 +115,7 @@ int executeInstruction(Instruction inst, uint8_t* ram, uint8_t* pc, uint8_t* lin
             break;
         
         case 0x0A:  // bell
-            printf("BELL\n");
+            printf("\n\033[106mBELL\033[0m\n");
             break;
 
         default:
