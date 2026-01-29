@@ -29,7 +29,7 @@ int executeInstruction(Instruction inst, uint8_t* ram, uint8_t* pc, uint8_t* lin
 
         case 0x20:  // sub
             *destReg = *sourceReg + ((~ram[inst.data])+1);  // subtraction
-            *carryFlag = *destReg >> 4;   // set the carry flag if the result is bigger than 15
+            *carryFlag = (*destReg >> 4) & 1;   // set the carry flag if the result is bigger than 15
             *destReg &= 0x0f;   // make sure the result is not bigger than 15
             break;
 
@@ -45,7 +45,6 @@ int executeInstruction(Instruction inst, uint8_t* ram, uint8_t* pc, uint8_t* lin
 
         case 0x50:  //  ldi
             *destReg = inst.data;
-            printf("INSTRUCTION DATA %d\n", inst.data);
             break;
         
         case 0x60:  // mdr (move destReg ram)
