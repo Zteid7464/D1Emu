@@ -1,5 +1,9 @@
 # D1 Emu
 
-## An emualtor for the d1 computer
+## An emulator for the D1 computer
 
 TODO Add proper documentation
+
+### Helpfull thing
+
+The D1 Assembler: https://github.com/Zteid7464/D1Asm
